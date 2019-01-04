@@ -48,6 +48,7 @@ use lib "inc";
 use lib "t";
 use local_utils;
 use version;
+use warnings;
 
 # prepare local CPAN
 local_utils::cleanup_dot_cpan();
@@ -129,14 +130,18 @@ BEGIN {
 }
 
 {
+    local $Parse::CPAN::Meta::VERSION = "1.4417_001";
+    #local $Parse::CPAN::Meta::VERSION = "1.39";
     for my $case ( @meta_yml_tests ) {
         my $yaml;
         my $label = $case->{label};
         my $tempdir = tempdir( "t/41distributionXXXX", CLEANUP => 1 );
 
         # dummy distribution
+print STDOUT "AAA: $label\n";
+print STDOUT "BBB: $Parse::CPAN::Meta::VERSION\n";
         my $dist = CPAN::Distribution->new(
-            ID => "D/DA/DAGOLDEN/Bogus-Module-1.234"
+            ID => "D/DA/DAGOLDEN/Bogus-Module-1.234_001"
         );
         $dist->{build_dir} = $tempdir;    
 

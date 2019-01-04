@@ -637,6 +637,7 @@ sub parse_meta_yml {
     my $early_yaml;
     eval {
         $CPAN::META->has_inst("Parse::CPAN::Meta") or die;
+print STDOUT "XXX: $Parse::CPAN::Meta::VERSION\n";
         die "Parse::CPAN::Meta yaml too old" unless $Parse::CPAN::Meta::VERSION >= "1.40";
         # P::C::M returns last document in scalar context
         $early_yaml = Parse::CPAN::Meta::LoadFile($yaml);
